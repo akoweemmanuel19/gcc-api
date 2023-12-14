@@ -1,5 +1,5 @@
 module.exports = app => {
-  const typePartieSupports = require("../controllers/typePartieSupport.controller.js");
+  const typePartieSupports = require("../controllers/typePartieSupport.controllers");
 
   var router = require("express").Router();
 

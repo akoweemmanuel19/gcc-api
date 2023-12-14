@@ -1,11 +1,11 @@
 const db = require("../models");
 const Connaissance = db.connaissances;
-const Op = db.Sequelize.Op;
+// const Op = db.Sequelize.Op;
 
 // Create and Save a new Connaissance
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.libelle && !req.body.typeConnaissanceId) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -13,14 +13,19 @@ exports.create = (req, res) => {
   }
 
   // Create a Connaissance
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const connaissance = req.body.connaissanceSId ? {
+    libelle: req.body.libelle,
+    typeConnaissanceId: req.body.typeConnaissanceId,
+    connaissanceSId: req.body.connaissanceSId,
+    description: req.body.description
+  } : {
+    libelle: req.body.libelle,
+    typeConnaissanceId: req.body.typeConnaissanceId,
+    description: req.body.description
   };
 
   // Save Connaissance in the database
-  Connaissance.create(tutorial)
+  Connaissance.create(connaissance)
     .then(data => {
       res.send(data);
     })
@@ -34,19 +39,35 @@ exports.create = (req, res) => {
 
 // Retrieve all Connaissances from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  const typeConnaissanceId = req.query.typeConnaissanceId;
 
-  Connaissance.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
+  if (req.query.typeConnaissanceId) {
+    Connaissance.findAll({
+      where: {
+        typeConnaissanceId: typeConnaissanceId
+      }
     })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving connaissances."
+        });
       });
-    });
+  } else {
+    Connaissance.findAll()
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving connaissances."
+        });
+      });
+  }
 };
 
 // Find a single Connaissance with an id

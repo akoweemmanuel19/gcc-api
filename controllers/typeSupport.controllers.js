@@ -1,11 +1,11 @@
 const db = require("../models");
 const typeSupport = db.typeSupports;
-const Op = db.Sequelize.Op;
+// const Op = db.Sequelize.Op;
 
 // Create and Save a new typeSupport
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.libelle && !req.body.natureSupportId) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -13,14 +13,14 @@ exports.create = (req, res) => {
   }
 
   // Create a typeSupport
-  const tutorial = {
-    title: req.body.title,
+  const typeSupport = {
+    libelle: req.body.libelle,
     description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    natureSupportId: req.body.natureSupportId
   };
 
   // Save typeSupport in the database
-  typeSupport.create(tutorial)
+  typeSupport.create(typeSupport)
     .then(data => {
       res.send(data);
     })
@@ -34,17 +34,14 @@ exports.create = (req, res) => {
 
 // Retrieve all typeSupports from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
-
-  typeSupport.findAll({ where: condition })
+  typeSupport.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving typeSupports."
       });
     });
 };

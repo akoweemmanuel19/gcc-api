@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: "postgres://dbp_user:uQYcCYFLaynYhwFsi4c5r3kuJXXsvBPl@dpg-clot1mhoh6hc73bnh040-a.oregon-postgres.render.com",
-    USER: "dbp_user",
-    PASSWORD: "uQYcCYFLaynYhwFsi4c5r3kuJXXsvBPl",
-    DB: "dbp",
+    HOST: "127.0.0.1",
+    USER: "postgres",
+    PASSWORD: "root",
+    DB: "gcc-db", 
     dialect: "postgres",
     pool: {
       max: 5,

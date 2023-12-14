@@ -16,7 +16,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
-const db = require("./app/models");
+const db = require("./models");
 db.sequelize.sync();
 // drop the table if it already exists
 db.sequelize.sync({ force: true }).then(() => {
@@ -25,17 +25,17 @@ db.sequelize.sync({ force: true }).then(() => {
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Bienvenue sur gcc-api de Modernetic Benin." });
+    res.json({ message: "Welcome to gcc-api of Modernetic Benin." });
 });
 
-require("./app/routes/support.routes")(app);
-require("./app/routes/typeSupport.routes")(app);
-require("./app/routes/typeConnaissance.routes")(app);
-require("./app/routes/typeSupport.routes")(app);
-require("./app/routes/typePartieSupport.routes")(app);
-require("./app/routes/connaissance.routes")(app);
-require("./app/routes/natureSupport.routes")(app);
-require("./app/routes/referencer.routes")(app);
+require("./routes/support.routes")(app);
+require("./routes/typeSupport.routes")(app);
+require("./routes/typeConnaissance.routes")(app);
+require("./routes/typeSupport.routes")(app);
+require("./routes/typePartieSupport.routes")(app);
+require("./routes/connaissance.routes")(app);
+require("./routes/natureSupport.routes")(app);
+require("./routes/referencer.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

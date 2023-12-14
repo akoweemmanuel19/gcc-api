@@ -1,5 +1,5 @@
 module.exports = app => {
-    const referencers = require("../controllers/referencer.controller.js");
+    const referencers = require("../controllers/referencer.controllers");
   
     var router = require("express").Router();
   

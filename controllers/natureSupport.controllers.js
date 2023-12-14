@@ -5,22 +5,21 @@ const Op = db.Sequelize.Op;
 // Create and Save a new NatureSupport
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
+  if (!req.body.libelle) {
+    res.status(400).send({ 
       message: "Content can not be empty!"
     });
     return;
   }
 
   // Create a NatureSupport
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const natureSupport = {
+    libelle: req.body.libelle,
+    description: req.body.description
   };
 
   // Save NatureSupport in the database
-  NatureSupport.create(tutorial)
+  NatureSupport.create(natureSupport)
     .then(data => {
       res.send(data);
     })
@@ -34,17 +33,14 @@ exports.create = (req, res) => {
 
 // Retrieve all NatureSupports from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
-
-  NatureSupport.findAll({ where: condition })
+  NatureSupport.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving natureSupports."
       });
     });
 };

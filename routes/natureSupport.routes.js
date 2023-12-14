@@ -1,5 +1,5 @@
 module.exports = app => {
-  const natureSupports = require("../controllers/natureSupport.controller.js");
+  const natureSupports = require("../controllers/natureSupport.controllers");
 
   var router = require("express").Router();
 

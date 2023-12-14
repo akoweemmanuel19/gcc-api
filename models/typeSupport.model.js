@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const TypeSupport = sequelize.define("typeSupport", {
       id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
       libelle: {

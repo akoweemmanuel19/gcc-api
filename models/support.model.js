@@ -1,13 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
     const Support = sequelize.define("support", {
-      title: {
+      id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
+      },
+      titre: {
         type: Sequelize.STRING
       },
-      description: {
+      url: {
         type: Sequelize.STRING
-      },
-      published: {
-        type: Sequelize.BOOLEAN
       }
     });
   

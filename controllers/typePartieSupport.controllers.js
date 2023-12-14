@@ -1,11 +1,11 @@
 const db = require("../models");
 const typePartieSupport = db.typePartieSupports;
-const Op = db.Sequelize.Op;
+// const Op = db.Sequelize.Op;
 
 // Create and Save a new typePartieSupport
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.libelle) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -13,14 +13,13 @@ exports.create = (req, res) => {
   }
 
   // Create a typePartieSupport
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const typePartieConnaissance = {
+    libelle: req.body.libelle,
+    description: req.body.description
   };
 
   // Save typePartieSupport in the database
-  typePartieSupport.create(tutorial)
+  typePartieSupport.create(typePartieConnaissance)
     .then(data => {
       res.send(data);
     })
@@ -34,17 +33,14 @@ exports.create = (req, res) => {
 
 // Retrieve all typePartieSupports from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
-
-  typePartieSupport.findAll({ where: condition })
+  typePartieSupport.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving typePartieConnaissances."
       });
     });
 };

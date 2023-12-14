@@ -1,11 +1,11 @@
 const db = require("../models");
 const PartieSupport = db.partieSupports;
-const Op = db.Sequelize.Op;
-
+// const Op = db.Sequelize.Op;
+ 
 // Create and Save a new PartieSupport
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.contenu && !req.body.typePartieSupportId && !req.body.supportId) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -13,14 +13,14 @@ exports.create = (req, res) => {
   }
 
   // Create a PartieSupport
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const partieSupport = {
+    contenu: req.body.contenu,
+    supportId: req.body.supportId,
+    typePartieSupportId: req.body.typePartieSupportId
   };
 
   // Save PartieSupport in the database
-  PartieSupport.create(tutorial)
+  PartieSupport.create(partieSupport)
     .then(data => {
       res.send(data);
     })
@@ -34,17 +34,14 @@ exports.create = (req, res) => {
 
 // Retrieve all PartieSupports from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
-
-  PartieSupport.findAll({ where: condition })
+  PartieSupport.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving partieSupports."
       });
     });
 };

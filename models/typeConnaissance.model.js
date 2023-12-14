@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const TypeConnaissance = sequelize.define("typeConnaissance", {
       id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
       libelle: {

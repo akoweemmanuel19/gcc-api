@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Referencer = sequelize.define("referencer", {
         id: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },

@@ -20,7 +20,7 @@ db.sequelize = sequelize;
 
 db.supports = require("./support.model.js")(sequelize, Sequelize);
 db.natureSupports = require("./natureSupport.model.js")(sequelize, Sequelize);
-db.typeSupports = require("./typeSuport.model.js")(sequelize, Sequelize);
+db.typeSupports = require("./typeSupport.model.js")(sequelize, Sequelize);
 db.typePartieSupports = require("./typePartieSupport.model.js")(sequelize, Sequelize);
 db.partieSupports = require("./partieSupport.model.js")(sequelize, Sequelize);
 db.typeConnaissance = require("./typeConnaissance.model.js")(sequelize, Sequelize);
@@ -29,9 +29,6 @@ db.referencers = require("./referencer.model.js")(sequelize, Sequelize);
 db.connaissances = require("./connaissance.model.js")(sequelize, Sequelize);
 
 
-db.supports.hasMany(db.partieSupports, {
-    foreignKey: 'supportId'
-});
 
 db.connaissances.hasMany(db.supports, {
     foreignKey: 'connaissanceId'
@@ -39,7 +36,7 @@ db.connaissances.hasMany(db.supports, {
 
 db.natureSupports.hasMany(db.typeSupports, {
     foreignKey: 'natureSupportId'
-});
+}); 
 
 db.typePartieSupports.hasMany(db.partieSupports, {
     foreignKey: 'typePartieSupportId'
