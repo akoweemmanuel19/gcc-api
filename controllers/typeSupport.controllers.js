@@ -1,6 +1,6 @@
 const db = require("../models");
-const typeSupport = db.typeSupports;
-// const Op = db.Sequelize.Op;
+const TypeSupport = db.db.typeSupports;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new typeSupport
 exports.create = (req, res) => {
@@ -20,21 +20,21 @@ exports.create = (req, res) => {
   };
 
   // Save typeSupport in the database
-  typeSupport.create(typeSupport)
+  TypeSupport.create(typeSupport)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the typeSupport."
+          err.message || "Some error occurred while creating the TypeSupport."
       });
     });
 };
 
 // Retrieve all typeSupports from the database.
 exports.findAll = (req, res) => {
-  typeSupport.findAll()
+  TypeSupport.findAll()
     .then(data => {
       res.send(data);
     })
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  typeSupport.findByPk(id)
+  TypeSupport.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -71,7 +71,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  typeSupport.update(req.body, {
+  TypeSupport.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -96,7 +96,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  typeSupport.destroy({
+  TypeSupport.destroy({
     where: { id: id }
   })
     .then(num => {

@@ -1,6 +1,6 @@
 const db = require("../models");
-const typePartieSupport = db.typePartieSupports;
-// const Op = db.Sequelize.Op;
+const TypePartieSupport = db.db.typePartieSupports;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new typePartieSupport
 exports.create = (req, res) => {
@@ -19,21 +19,21 @@ exports.create = (req, res) => {
   };
 
   // Save typePartieSupport in the database
-  typePartieSupport.create(typePartieConnaissance)
+  TypePartieSupport.create(typePartieConnaissance)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the typePartieSupport."
+          err.message || "Some error occurred while creating the TypePartieSupport."
       });
     });
 };
 
 // Retrieve all typePartieSupports from the database.
 exports.findAll = (req, res) => {
-  typePartieSupport.findAll()
+  TypePartieSupport.findAll()
     .then(data => {
       res.send(data);
     })
@@ -49,7 +49,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  typePartieSupport.findByPk(id)
+  TypePartieSupport.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -70,7 +70,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  typePartieSupport.update(req.body, {
+  TypePartieSupport.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -95,7 +95,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  typePartieSupport.destroy({
+  TypePartieSupport.destroy({
     where: { id: id }
   })
     .then(num => {

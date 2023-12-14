@@ -1,6 +1,6 @@
 const db = require("../models");
-const Connaissance = db.connaissances;
-// const Op = db.Sequelize.Op;
+const Connaissance = db.db.connaissances;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new Connaissance
 exports.create = (req, res) => {

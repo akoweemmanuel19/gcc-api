@@ -103,5 +103,6 @@ const Init = () => {
 
 
 module.exports = {
-    Init
+    Init,
+    db
 };

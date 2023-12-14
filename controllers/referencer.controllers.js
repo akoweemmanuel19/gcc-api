@@ -1,6 +1,6 @@
 const db = require("../models");
-const Referencer = db.referencers;
-// const Op = db.Sequelize.Op;
+const Referencer = db.db.referencers;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new Referencer
 exports.create = (req, res) => {

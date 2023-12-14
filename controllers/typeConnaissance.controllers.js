@@ -1,5 +1,5 @@
 const db = require("../models");
-const typeConnaissance = db.typeConnaissance;
+const TypeConnaissance = db.db.typeConnaissance;
 // const Op = db.Sequelize.Op;
 
 // Create and Save a new typeConnaissance
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   };
 
   // Save typeConnaissance in the database
-  typeConnaissance.create(typeConnaissance)
+  TypeConnaissance.create(typeConnaissance)
     .then(data => {
       res.send(data);
     })
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
 
 // Retrieve all typeConnaissances from the database.
 exports.findAll = (req, res) => {
-  typeConnaissance.findAll()
+  TypeConnaissance.findAll()
     .then(data => {
       res.send(data);
     })
@@ -49,7 +49,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  typeConnaissance.findByPk(id)
+  TypeConnaissance.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data);
@@ -70,7 +70,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  typeConnaissance.update(req.body, {
+  TypeConnaissance.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -95,7 +95,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  typeConnaissance.destroy({
+  TypeConnaissance.destroy({
     where: { id: id }
   })
     .then(num => {

@@ -3,19 +3,19 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new Tutorial
+    // Create a new Data
     router.post("/", referencers.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all Datas
     router.get("/", referencers.findAll);
   
-    // Retrieve a single Tutorial with id
+    // Retrieve a single Data with id
     router.get("/:id", referencers.findOne);
   
-    // Update a Tutorial with id
+    // Update a Data with id
     router.put("/:id", referencers.update);
   
-    // Delete a Tutorial with id
+    // Delete a Data with id
     router.delete("/:id", referencers.delete);
   
     app.use("/api/referencers", router);

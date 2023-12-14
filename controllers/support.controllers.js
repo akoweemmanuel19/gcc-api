@@ -1,6 +1,6 @@
 const db = require("../models");
-const Support = db.supports;
-// const Op = db.Sequelize.Op;
+const Support = db.db.supports;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new Support
 exports.create = (req, res) => {

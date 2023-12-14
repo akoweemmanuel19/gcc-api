@@ -1,6 +1,6 @@
 const db = require("../models");
-const PartieSupport = db.partieSupports;
-// const Op = db.Sequelize.Op;
+const PartieSupport = db.db.partieSupports;
+// const Op = db.db.Sequelize.Op;
  
 // Create and Save a new PartieSupport
 exports.create = (req, res) => {

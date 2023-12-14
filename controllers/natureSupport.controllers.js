@@ -1,6 +1,6 @@
 const db = require("../models");
-const NatureSupport = db.natureSupports;
-// const Op = db.Sequelize.Op;
+const NatureSupport = db.db.natureSupports;
+// const Op = db.db.Sequelize.Op;
 
 // Create and Save a new NatureSupport
 exports.create = (req, res) => {
