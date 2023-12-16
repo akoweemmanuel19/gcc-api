@@ -1,3 +1,3 @@
 module.exports = {
-    URL: "postgres://gccuser:4A39m3dyD8UL0YCJvQahvmtHaYI1bWYy@dpg-clulnsmd3nmc7385d2lg-a.oregon-postgres.render.com/gcc_db"
+    URL: "postgres://gccuser:16EKl3L0fVyGMsMv60AckYu9Vm30l6jI@dpg-cluntpug1b2c73c9psfg-a.oregon-postgres.render.com/gcc_db_wpg9"
 };
