@@ -2,15 +2,10 @@ const dbConfig = require("../config/db.config.js");
 const data = require('../data/data.js')
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
-
-    pool: {
-        max: dbConfig.pool.max,
-        min: dbConfig.pool.min,
-        acquire: dbConfig.pool.acquire,
-        idle: dbConfig.pool.idle
+const sequelize = new Sequelize(dbConfig.URL, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: true
     }
 });
 
@@ -66,7 +61,7 @@ const Init = () => {
     db.sequelize.sync({ force: true }).then(() => {
         console.log("Drop and re-sync db.");
         data.allNatureSupports.forEach(
-            natureSupport =>{
+            natureSupport => {
                 db.natureSupports.create(
                     {
                         libelle: natureSupport.libelle,
@@ -77,7 +72,7 @@ const Init = () => {
         )
 
         data.allTypeConnaissances.forEach(
-            typeConnaissance =>{
+            typeConnaissance => {
                 db.typeConnaissance.create(
                     {
                         libelle: typeConnaissance.libelle,
@@ -88,7 +83,7 @@ const Init = () => {
         )
 
         data.allTypePartieSupports.forEach(
-            typePartieSupport =>{
+            typePartieSupport => {
                 db.typePartieSupports.create(
                     {
                         libelle: typePartieSupport.libelle,

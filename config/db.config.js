@@ -1,13 +1,3 @@
 module.exports = {
-    HOST: "127.0.0.1",
-    USER: "postgres",
-    PASSWORD: "root",
-    DB: "gcc-db", 
-    dialect: "postgres",
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
-  };
+    URL: "postgres://gccuser:4A39m3dyD8UL0YCJvQahvmtHaYI1bWYy@dpg-clulnsmd3nmc7385d2lg-a.oregon-postgres.render.com/gcc_db"
+};
