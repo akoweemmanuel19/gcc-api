@@ -33,6 +33,9 @@ require("./routes/typePartieSupport.routes")(app);
 require("./routes/connaissance.routes")(app);
 require("./routes/natureSupport.routes")(app);
 require("./routes/referencer.routes")(app);
+require("./routes/utilisateur.routes")(app);
+require("./routes/login.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080; 
