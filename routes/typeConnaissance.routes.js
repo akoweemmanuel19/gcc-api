@@ -1,17 +1,19 @@
 module.exports = app => {
   const typeConnaissances = require("../controllers/typeConnaissance.controllers");
+  const auth = require('../config/auth')
+
 
   var router = require("express").Router();
 
-  router.post("/", typeConnaissances.create);
+  router.post("/",auth, typeConnaissances.create);
 
-  router.get("/", typeConnaissances.findAll);
+  router.get("/",auth, typeConnaissances.findAll);
 
-  router.get("/:id", typeConnaissances.findOne);
+  router.get("/:id",auth, typeConnaissances.findOne);
 
-  router.put("/:id", typeConnaissances.update);
+  router.put("/:id",auth, typeConnaissances.update);
 
-  router.delete("/:id", typeConnaissances.delete);
+  router.delete("/:id",auth, typeConnaissances.delete);
 
   app.use("/api/typeConnaissances", router);
 };
