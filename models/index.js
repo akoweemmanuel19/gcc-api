@@ -1,10 +1,11 @@
 const dbConfig = require("../config/db.config.js");
 const data = require('../data/data.js')
+const bcrypt = require('bcrypt')
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.URL, {
     dialect: 'postgres',
-    dialectOptions: {
+    dialectOptions: { 
         ssl: true
     }
 });
@@ -22,6 +23,8 @@ db.partieSupports = require("./partieSupport.model.js")(sequelize, Sequelize);
 db.typeConnaissance = require("./typeConnaissance.model.js")(sequelize, Sequelize);
 db.referencers = require("./referencer.model.js")(sequelize, Sequelize);
 db.connaissances = require("./connaissance.model.js")(sequelize, Sequelize);
+db.utilisateurs = require("./utilisateur.model.js")(sequelize, Sequelize);
+
 
 db.connaissances.hasMany(db.supports, {
     foreignKey: 'connaissanceId'
@@ -60,6 +63,21 @@ const Init = () => {
     // drop the table if it already exists
     db.sequelize.sync({ force: true }).then(() => {
         console.log("Drop and re-sync db.");
+        bcrypt
+        .hash("admin", 10)
+        .then((hash) =>
+          {
+            db.utilisateurs.create({
+                username: "admin", 
+                password: hash,
+                email: "admin@gcc.co",
+                nom: "AKOWE",
+                prenom: "Emmanuel",
+                profil:"admin"
+              })
+          }
+        )
+        
         data.allNatureSupports.forEach(
             natureSupport => {
                 db.natureSupports.create(

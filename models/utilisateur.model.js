@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
+      username: {
+        type: Sequelize.STRING
+      },
       nom: {
         type: Sequelize.STRING
       },
@@ -21,7 +24,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       profil:{
-        type: Sequelize.ARRAY,
+        type: Sequelize.STRING,
         defaultValue: ['admin','user']
       }
     });

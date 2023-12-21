@@ -1,8 +1,8 @@
 const db = require("../models");
-const User = db.db.connaissances;
+const User = db.db.utilisateurs;
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const privateKey = require('../../auth/private-key')
+const privateKey = require('../config/private_key')
 
 module.exports = (req, res) => {
 
@@ -23,8 +23,15 @@ module.exports = (req, res) => {
                     privateKey,
                     { expiresIn: '24h' }
                 )
+
+                const u_s = {
+                    nom: user.nom,
+                    prenom : user.prenom,
+                    email: user.email,
+                    username: user.username
+                }
                 const mylogindata = {
-                    user: user
+                    user: u_s
                 }
 
                 const message = `L'utilisateur s'est connecté avec succès`;
